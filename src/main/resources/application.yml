@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: book-store
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book-store
+    username: postgres
+    password: 666
+  flyway:
+    url: jdbc:postgresql://localhost:5432/book-store
+    user: postgres
+    password: 666
+    enabled: true
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        ddl-auto: none
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  main:
+    allow-bean-definition-overriding: true
+  http:
+    log-request-details: true
+  batch:
+    job:
+      enabled: true
+
+jobs:
+  cron:
+    writeDataToTableFromXml: 0 * * ? * *
+
+
